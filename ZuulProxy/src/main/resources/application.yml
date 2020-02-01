@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: proxy-service
+
+server:
+  port: 9060
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9090/eureka/
+
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes,filters
+zuul:
+  routes:
+    token:
+      path: /token/**
+      serviceId: token-service
